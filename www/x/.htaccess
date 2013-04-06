@@ -1,0 +1,5 @@
+DirectoryIndex index.html
+AuthType Basic
+AuthName "Администрирование MySQL (PHPmyADMIN)."
+AuthUserFile "/var/www/html/.htpasswd"
+require valid-user web
