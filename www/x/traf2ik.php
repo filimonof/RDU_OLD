@@ -7,10 +7,13 @@ $file_current_traffic = '/usr/local/stc/etc/cur_tr.users';
 $file_tmp_lim = '/var/www/html/x/traff.users.tmp';
 $file_tmp_cur = '/var/www/html/x/cur_tr.users.tmp';
 
+// СЃРєСЂРёРїС‚РёРє РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ С‚СЂР°С„РёРєР° 
+// Р±Р»Р°РіРѕРґР°СЂСЏ РµРјСѓ Сѓ РјРµРЅСЏ Р±С‹Р» Р±РµР·Р»РёРјРёС‚ ))))))
+
 function get_conf_file($name){
 	$f = file($name);	
   	if(!$f) 
-  		echo("Ошибка открытия файла");
+  		echo("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
 	else
     	for($i=0; $i < count($f); $i++)
 			printf("%s<br>", $f[$i]);		
@@ -19,33 +22,33 @@ function get_conf_file($name){
 function edit_conf_file($file,$file_tmp,$user,$add){
 	if ($add < 1000000) $add *= 1000000;
 		
-	// проверяем, не было ли сбоя в предыдущем запуске скрипта
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if(file_exists($file_tmp)) die("fatal error, call administrator!");	
 
 //       printf("copy $file to $file_tmp");
 
-	// копируем содержимое файла в tmp
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ tmp
 	if(copy($file, $file_tmp)){
 
 //	        printf("ok copy");
 
-		 // удачно скопировался, можно перезаписывать основной файл
+		 // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		 if($w=fopen($file,"w"))
 		 {
-     		  //локируем файл
+     		  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			  flock($w,LOCK_EX);   			
 			  if(!$r=fopen($file_tmp,"r")) die("can't open file");
 			  flock($r,LOCK_SH);
                        printf("search");
-			  while($str_r = fgets($r,10240)) // читаем построчно
+			  while($str_r = fgets($r,10240)) // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			  {
 					$str = explode(" ", $str_r);
 					if ($str[0] == $user){
 						printf(" user %s old value %s new value %s <br> ",$str[0],$str[1],$str[1]+$add);
 						$str[1] += $add;
-						fputs($w,$str[0]." ".$str[1]." \n"); // пишем построчно						 
+						fputs($w,$str[0]." ".$str[1]." \n"); // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ						 
 					}else{
-						fputs($w,$str_r); // пишем построчно
+						fputs($w,$str_r); // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					}			
 			   		
 			  }
@@ -60,13 +63,13 @@ function edit_conf_file($file,$file_tmp,$user,$add){
 
 
 if(isset($_GET["list"])){
-	echo "Статистика<br>";
+	echo "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ<br>";
 	get_conf_file($file_current_traffic);
 	echo "<hr>";
 }
 
 if(isset($_GET["limit"])){
-	echo "Лимиты<br>";
+	echo "пїЅпїЅпїЅпїЅпїЅпїЅ<br>";
 	get_conf_file($file_limit);
 	echo "<hr>";
 }
