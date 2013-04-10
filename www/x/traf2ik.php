@@ -7,7 +7,7 @@ $file_current_traffic = '/usr/local/stc/etc/cur_tr.users';
 $file_tmp_lim = '/var/www/html/x/traff.users.tmp';
 $file_tmp_cur = '/var/www/html/x/cur_tr.users.tmp';
 
-// скриптик для добавления трафика 
+// скриптик для добавления трафика в squid
 // благодаря ему у меня был безлимит ))))))
 
 function get_conf_file($name){
